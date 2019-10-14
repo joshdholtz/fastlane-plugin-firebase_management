@@ -27,7 +27,7 @@ module Fastlane
 					if !ios_apps.empty? then
 						UI.message "  iOS"
 						ios_apps.sort {|left, right| left["appId"] <=> right["appId"] }.each_with_index { |app, j|
-							UI.message "  - #{app["displayName"] || app["bundleId"]} (#{app["appId"]})" 
+							UI.message "  - #{app["displayName"]} #{app["bundleId"]} (#{app["appId"]})" 
 						}
 					end
 
@@ -35,7 +35,7 @@ module Fastlane
 					if !android_apps.empty? then
 						UI.message "  Android"
 						android_apps.sort {|left, right| left["appId"] <=> right["appId"] }.each_with_index { |app, j|
-							UI.message "  - #{app["displayName"] || app["packageName"]} (#{app["appId"]})" 
+							UI.message "  - #{app["displayName"]} #{app["packageName"]} (#{app["appId"]})" 
 						}
 					end
 				}

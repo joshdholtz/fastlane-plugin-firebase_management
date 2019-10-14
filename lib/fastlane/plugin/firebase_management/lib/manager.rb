@@ -65,7 +65,7 @@ module Fastlane
 				end
 			end
 
-			def select_app(project_id, app_id, type)
+			def select_app(project_id, app_id, type, bundle_id)
 
 				case type
 				when :ios
@@ -82,6 +82,8 @@ module Fastlane
 				apps = apps.sort {|left, right| left["appId"] <=> right["appId"] }
 
 				if app = apps.select {|a| a["appId"] == app_id }.first then
+					app
+				elsif app = apps.select {|a| a["bundleId"] == bundle_id || a["packageName"] == bundle_id }.first then
 					app
 				else
 					options = apps.map { |a| "#{a["displayName"] || a["bundleId"] || a["packageName"]} (#{a["appId"]})" }

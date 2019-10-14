@@ -23,7 +23,7 @@ module Fastlane
 				type = params[:type].to_sym
 
 				# select app
-				app_id = params[:app_id] || manager.select_app(project_id, nil, type)["appId"]
+				app_id = params[:app_id] || manager.select_app(project_id, nil, type, params[:bundle_id])["appId"]
 
 				# download
 				case type
@@ -87,6 +87,11 @@ module Fastlane
 					FastlaneCore::ConfigItem.new(key: :app_id,
 					                        env_name: "FIREBASE_APP_ID",
 					                     description: "Project app id",
+					                        optional: true),
+
+					FastlaneCore::ConfigItem.new(key: :bundle_id,
+					                        env_name: "FIREBASE_BUNDLE_ID",
+					                     description: "Bundle id",
 					                        optional: true),
 
 					FastlaneCore::ConfigItem.new(key: :type,
